@@ -1,0 +1,13 @@
+
+> phase-1-mock-cc-ramen-rater@1.0.0 test
+> mocha --timeout 5000
+
+
+
+  
+    
+      ✓ Test passing
+
+
+  1 passing (259ms)
+
