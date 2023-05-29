@@ -49,60 +49,17 @@ function renderRamenDetail(ramen) {
     img.src = ramen.image
     img.alt = ramen.name
 
-    const name = ramenDetail.querySelector('h2')
-    name.textContent = ramen.name
+    const h2 = ramenDetail.querySelector('h2')
+    h2.textContent = ramen.name
 
-    const restaurant = ramenDetail.querySelector('h3')
-    restaurant.textContent = ramen.restaurant
+    const h3 = ramenDetail.querySelector('h3')
+    h3.textContent = ramen.restaurant
 
-    const rating = ramenDetail.querySelector('#rating-display')
+    const rating = document.querySelector('#rating-display')
     rating.textContent = ramen.rating
 
-    const comment = ramenDetail.querySelector('#comment-display')
+    const comment = document.querySelector('#comment-display')
     comment.textContent = ramen.comment
-
-    const ratingForm = ramenDetail.querySelector('#rating-form')
-    ratingForm.dataset.id = ramen.id
-
-    const commentForm = ramenDetail.querySelector('#comment-form')
-    commentForm.dataset.id = ramen.id
-}
-
-ratingForm.addEventListener('submit', event => {
-    event.preventDefault()
-    const id = event.target.dataset.id
-    const rating = event.target.rating.value
-
-    fetch(`http://localhost:3000/ramens/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ rating })
-    })
-        .then(response => response.json())
-        .then(updatedRamen => {
-            renderRamenDetail(updatedRamen)
-        })
-})
-
-commentForm.addEventListener('submit', event => {
-    event.preventDefault()
-    const id = event.target.dataset.id
-    const comment = event.target.comment.value
-
-    fetch(`http://localhost:3000/ramens/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ comment })
-    })
-        .then(response => response.json())
-        .then(updatedRamen => {
-            renderRamenDetail(updatedRamen)
-        })
-})
 
 newRamenForm.addEventListener('submit', event => {
     event.preventDefault()
@@ -122,9 +79,10 @@ newRamenForm.addEventListener('submit', event => {
         body: JSON.stringify(newRamen)
     })
         .then(response => response.json())
-        .then(newRamen => {
-            renderRamen(newRamen)
+        .then(ramen => {
+            renderRamen(ramen)
             event.target.reset()
         })
 })
+
 
